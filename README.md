@@ -1,6 +1,10 @@
 # halyard
 
-[![Build Status](https://travis-ci.org/infOpen/ansible-role-halyard.svg?branch=master)](https://travis-ci.org/infOpen/ansible-role-halyard)
+[![Build Status](https://img.shields.io/travis/infOpen/ansible-role-halyard/master.svg?label=travis_master)](https://travis-ci.org/infOpen/ansible-role-halyard)
+[![Build Status](https://img.shields.io/travis/infOpen/ansible-role-halyard/develop.svg?label=travis_develop)](https://travis-ci.org/infOpen/ansible-role-halyard)
+[![Updates](https://pyup.io/repos/github/infOpen/ansible-role-halyard/shield.svg)](https://pyup.io/repos/github/infOpen/ansible-role-halyard/)
+[![Python 3](https://pyup.io/repos/github/infOpen/ansible-role-halyard/python-3-shield.svg)](https://pyup.io/repos/github/infOpen/ansible-role-halyard/)
+[![Ansible Role](https://img.shields.io/ansible/role/25377.svg)](https://galaxy.ansible.com/infOpen/halyard/)
 
 Install halyard package.
 
