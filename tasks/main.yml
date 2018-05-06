@@ -7,3 +7,20 @@
   tags:
     - 'role::halyard'
     - 'role::halyard::init'
+    - 'role::halyard::install'
+
+
+- name: 'INSTALL | Manage Halyard OS specific installation tasks'
+  include: "{{ role_path }}/tasks/install_{{ ansible_os_family | lower }}.yml"
+  become: True
+  tags:
+    - 'role::halyard'
+    - 'role::halyard::install'
+
+
+- name: 'INSTALL | Manage install from Git repository script'
+  include: "{{ role_path }}/tasks/install_common.yml"
+  become: True
+  tags:
+    - 'role::halyard'
+    - 'role::halyard::install'

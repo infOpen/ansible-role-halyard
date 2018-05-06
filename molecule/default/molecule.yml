@@ -7,20 +7,9 @@ driver:
 lint:
   name: 'yamllint'
 platforms:
-  - name: "halyard-docker-jessie"
-    image: 'minimum2scp/systemd-jessie:latest'
-    command: '/sbin/init'
-    cap_add:
-      - 'SYS_PTRACE'
-    privileged: True
   - name: "halyard-docker-xenial"
     image: 'solita/ubuntu-systemd:16.04'
     command: '/sbin/init'
-    cap_add:
-      - 'SYS_PTRACE'
-    privileged: True
-  - name: "halyard-docker-trusty"
-    image: 'ubuntu:trusty'
     cap_add:
       - 'SYS_PTRACE'
     privileged: True

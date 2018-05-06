@@ -9,13 +9,20 @@ testinfra_hosts = AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_hosts_file(host):
+def test_user(host):
     """
-    Ensure /etc/hosts file exists
+    Ensure halyard user exists
     """
 
-    f = host.file('/etc/hosts')
+    user = host.user('halyard')
 
-    assert f.exists
-    assert f.user == 'root'
-    assert f.group == 'root'
+    assert user.home == '/var/lib/halyard'
+    assert user.group == 'halyard'
+
+
+def test_cli(host):
+    """
+    Ensure Halyard is installed and available
+    """
+
+    assert host.run_expect([0], 'hal --ready')

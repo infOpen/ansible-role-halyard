@@ -21,8 +21,6 @@ Local and Travis tests run tests on Docker by default.
 See molecule documentation to use other backend.
 
 Currently, tests are done on:
-- Debian Jessie
-- Ubuntu Trusty
 - Ubuntu Xenial
 
 and use:
@@ -44,11 +42,45 @@ $ tox
 ### Default role variables
 
 ``` yaml
+# Dependencies management
+halyard_system_dependencies: "{{ _halyard_system_dependencies }}"
+halyard_use_ansible_galaxy_dependencies: True  # Use role dependencies in meta
+halyard_use_system_dependencies: False  # Else, you can install system packages
+
+# Dedicated user management
+halyard_group:
+  name: 'halyard'
+halyard_user:
+  name: 'halyard'
+  home: '/var/lib/halyard'
+
+# Paths
+halyard_dirs:
+  src:
+    path: '/opt/src/halyard'
+
+# General
+halyard_version: '0.32.0'
+
+# Git settings
+halyard_git_repo_url: 'https://github.com/spinnaker/halyard.git'
+halyard_git_version: "v{{ halyard_version }}"
+
+# Install script
+halyard_install_script: "{{ _halyard_install_script }}"
+halyard_install_command_options: >
+  --user {{ halyard_user.name }}
+  --version {{ halyard_version }}
+  -y
+halyard_install_term: 'vt100'  # Ensure a TERM is defined due to tput usage
 ```
 
 ## Dependencies
 
-None
+> You can disable role dependencies using *halyard_use_ansible_galaxy_dependencies* and setting *False*
+
+* [infOpen.openjdk-jre](https://galaxy.ansible.com/infOpen/openjdk-jre/)
+
 
 ## Example Playbook
 
