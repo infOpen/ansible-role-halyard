@@ -1,0 +1,35 @@
+---
+
+# Defaults vars file for halyard role
+
+# Dependencies management
+halyard_system_dependencies: "{{ _halyard_system_dependencies }}"
+halyard_use_ansible_galaxy_dependencies: True  # Use role dependencies in meta
+halyard_use_system_dependencies: False  # Else, you can install system packages
+
+# Dedicated user management
+halyard_group:
+  name: 'halyard'
+halyard_user:
+  name: 'halyard'
+  home: '/var/lib/halyard'
+
+# Paths
+halyard_dirs:
+  src:
+    path: '/opt/src/halyard'
+
+# General
+halyard_version: '0.32.0'
+
+# Git settings
+halyard_git_repo_url: 'https://github.com/spinnaker/halyard.git'
+halyard_git_version: "v{{ halyard_version }}"
+
+# Install script
+halyard_install_script: "{{ _halyard_install_script }}"
+halyard_install_command_options: >
+  --user {{ halyard_user.name }}
+  --version {{ halyard_version }}
+  -y
+halyard_install_term: 'vt100'  # Ensure a TERM is defined due to tput usage

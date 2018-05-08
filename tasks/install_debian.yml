@@ -1,0 +1,12 @@
+---
+
+# Specific Debian family installation tasks
+
+- name: 'INSTALL | APT | Install Debian family dependencies'
+  apt:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('present') }}"
+  with_items: "{{ halyard_system_dependencies }}"
+  when:
+    - "halyard_use_system_dependencies"
+    - "not halyard_use_ansible_galaxy_dependencies"

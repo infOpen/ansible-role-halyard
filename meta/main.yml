@@ -1,0 +1,30 @@
+---
+
+galaxy_info:
+  author: 'Alexandre Chaussier'
+  description: 'Ansible role to install and configure Halyard'
+  company: 'Infopen (http://www.infopen.pro)'
+  license: 'MIT'
+  min_ansible_version: '2.2'
+  github_branch: 'master'
+  platforms:
+    - name: 'Ubuntu'
+      versions:
+        - 'xenial'
+  galaxy_tags:
+    - 'ci'
+    - 'spinnaker'
+dependencies:
+  - src: 'infOpen.curl'
+    version: '0.1.0'
+    name: 'infOpen.curl__0.1.0'
+    when: "halyard_use_ansible_galaxy_dependencies or _use_role_dependencies"
+  - src: 'infOpen.git'
+    version: '0.1.0'
+    name: 'infOpen.git__0.1.0'
+    when: "halyard_use_ansible_galaxy_dependencies or _use_role_dependencies"
+  - src: 'infOpen.openjdk-jre'
+    version: '0.5.0'
+    name: 'infOpen.openjdk-jre__0.5.0'
+    openjdk_jre_version: 8
+    when: "halyard_use_ansible_galaxy_dependencies or _use_role_dependencies"

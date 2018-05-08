@@ -1,0 +1,11 @@
+---
+
+- src: 'infOpen.curl'
+  version: '0.1.0'
+  name: 'infOpen.curl__0.1.0'
+- src: 'infOpen.git'
+  version: '0.1.0'
+  name: 'infOpen.git__0.1.0'
+- src: 'infOpen.openjdk-jre'
+  version: '0.5.0'
+  name: 'infOpen.openjdk-jre__0.5.0'

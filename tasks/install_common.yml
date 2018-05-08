@@ -1,0 +1,36 @@
+---
+
+# Halyard common installation tasks
+
+- name: 'INSTALL | COMMON | Manage Halyard group'
+  user:
+    name: "{{ halyard_group.name }}"
+    gid: "{{ halyard_group.gid | default(omit) }}"
+
+
+- name: 'INSTALL | COMMON | Manage Halyard user'
+  user:
+    name: "{{ halyard_user.name }}"
+    group: "{{ halyard_user.group | default(halyard_user.name) }}"
+    home: "{{ halyard_user.home }}"
+    uid: "{{ halyard_user.uid | default(omit) }}"
+    shell: "{{ halyard_user.shell | default('/usr/bin/false') }}"
+
+
+- name: 'INSTALL | COMMON | Get Halyard source from Git'
+  git:
+    dest: "{{ halyard_dirs.src.path }}"
+    repo: "{{ halyard_git_repo_url }}"
+    version: "{{ halyard_git_version }}"
+  register: '_halyard_task_clone_repository'
+
+
+- name: 'INSTALL | Launch install script'
+  command: >
+    /bin/bash
+    ./{{ halyard_install_script }} {{ halyard_install_command_options }}
+  args:
+    chdir: "{{ halyard_dirs.src.path }}"
+  environment:
+    TERM: "{{ halyard_install_term }}"
+  when: "_halyard_task_clone_repository.changed"
